@@ -1,72 +1,78 @@
-// Import required libraries
-const { ethers } = require('ethers'); // For wallet address validation
-const jwt = require('jsonwebtoken');  // For creating JWT tokens later
-
-// Temporary storage for nonces (in real apps, use a database)
+const { ethers } = require('ethers');
+const jwt = require('jsonwebtoken');
 const nonceStore = new Map();
 
-// Function to generate a random nonce
-function generateNonce(walletAddress) {
-  const nonce = Math.floor(Math.random() * 1000000).toString();
-  nonceStore.set(walletAddress.toLowerCase(), nonce); // Store it
-  return nonce;
-}
-
-// Endpoint A: Get a nonce for a wallet
+// Generate nonce
 exports.getNonce = (req, res) => {
-  const { walletAddress } = req.body; // Get address from request body
-
-  // Check if address is valid
-  if (!walletAddress || !ethers.utils.isAddress(walletAddress)) {
+  const { walletAddress } = req.body;
+  
+  if (!walletAddress || !ethers.isAddress(walletAddress)) {
     return res.status(400).json({ error: 'Invalid wallet address' });
   }
 
-  // Generate and return the nonce
-  const nonce = generateNonce(walletAddress);
+  const nonce = Math.floor(Math.random() * 1000000).toString();
+  nonceStore.set(walletAddress.toLowerCase(), nonce);
   res.json({ nonce });
-  
 };
-// Verification
+
+// Verify signature and issue JWT
 exports.verifySignature = async (req, res) => {
-    try {
-      // 1. Get request data
-      const { walletAddress, signature } = req.body;
-  
-      // 2. Validate input
-      if (!walletAddress || !ethers.utils.isAddress(walletAddress)) {
-        return res.status(400).json({ error: "Invalid wallet address" });
-      }
-      if (!signature) {
-        return res.status(400).json({ error: "Signature is required" });
-      }
-  
-      // 3. Verify signature
-      const storedNonce = nonceStore.get(walletAddress.toLowerCase());
-      if (!storedNonce) {
-        return res.status(400).json({ error: "Nonce not found. Request one first." });
-      }
-  
-      const message = `Sign this message to authenticate. Nonce: ${storedNonce}`;
-      const recoveredAddress = ethers.utils.verifyMessage(message, signature);
-  
-      if (recoveredAddress.toLowerCase() !== walletAddress.toLowerCase()) {
-        return res.status(401).json({ error: "Signature verification failed" });
-      }
-  
-      // 4. Create JWT
-      const token = jwt.sign(
-        { walletAddress: walletAddress.toLowerCase() },
-        process.env.JWT_SECRET,
-        { expiresIn: '1h' }
-      );
-  
-      // 5. Clean up
-      nonceStore.delete(walletAddress.toLowerCase());
-  
-      return res.json({ token });
-  
-    } catch (error) {
-      console.error("Verification error:", error);
-      return res.status(500).json({ error: "Signature verification failed" });
+  try {
+    const { walletAddress, signature } = req.body;
+
+    // Validation
+    if (!walletAddress || !ethers.isAddress(walletAddress)) {
+      return res.status(400).json({ error: "Invalid wallet address" });
     }
-  };
+    if (!signature) {
+      return res.status(400).json({ error: "Signature required" });
+    }
+
+    // Verify nonce
+    const storedNonce = nonceStore.get(walletAddress.toLowerCase());
+    if (!storedNonce) {
+      return res.status(400).json({ error: "Nonce not found" });
+    }
+
+    // Verify signature
+    const message = `Sign this message to authenticate. Nonce: ${storedNonce}`;
+    const recoveredAddress = ethers.verifyMessage(message, signature);
+
+    if (recoveredAddress.toLowerCase() !== walletAddress.toLowerCase()) {
+      return res.status(401).json({ error: "Invalid signature" });
+    }
+
+    // Create JWT
+    const token = jwt.sign(
+      { walletAddress: walletAddress.toLowerCase() },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
+    // Cleanup
+    nonceStore.delete(walletAddress.toLowerCase());
+
+    res.json({ token });
+
+  } catch (error) {
+    console.error("Verification error:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+// JWT Verification Middleware
+exports.verifyToken = (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1];
+  
+  if (!token) {
+    return res.status(403).json({ error: "Autherization token required" });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+    req.walletAddress = decoded.walletAddress;
+    next();
+  });
+};
