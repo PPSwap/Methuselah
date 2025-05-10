@@ -22,6 +22,16 @@ preventative_practices = [
     ("How does Stoicism prevent mental burnout?", "Through acceptance, rational thinking, and focusing on things within personal control."),
     ("What ancient nutritional practices improve digestion?", "Mindful eating, intermittent fasting, and consumption of fermented foods."),
     ("How does regular fasting prevent metabolic disorders?", "It improves insulin sensitivity, detoxifies the body, and regulates metabolism."),
+    ("How did ancient cultures use nature to promote mental well-being?", "They practiced forest bathing, spent time near water bodies, and aligned activities with natural light cycles."),
+    ("What traditional Chinese herbs are used to boost energy levels?", "Ginseng, astragalus, and goji berries are known for improving vitality and energy."),
+    ("How can ancient walking meditations improve focus?", "Walking meditations promote mindfulness, calmness, and mental clarity by synchronizing movement and breath."),
+    ("What is the role of sound healing in ancient wellness practices?", "Chanting, singing bowls, and rhythmic drumming were used to regulate brainwaves and promote relaxation."),
+    ("How did ancient Indian traditions use spices for disease prevention?", "Spices like turmeric, cumin, and fenugreek were used daily to boost immunity and prevent inflammation."),
+    ("What seasonal cleansing routines are part of ancient wellness systems?", "Spring and autumn detoxes using herbs and fasting were common in Ayurveda and TCM."),
+    ("How did the Stoics view emotional regulation?", "They emphasized detachment from uncontrollables and cultivating inner discipline and virtue."),
+    ("What physical practices did ancient monks perform for health?", "Monks practiced martial arts, breath control, and physical rituals to enhance bodily strength and spiritual focus."),
+    ("What role did community rituals play in maintaining mental health?", "Collective ceremonies, storytelling, and group meditations built social cohesion and emotional resilience."),
+    ("How did Hippocrates suggest people should eat?", "Hippocrates recommended eating fresh, seasonal, whole foods and emphasized moderation and proper digestion."),
 ]
 
 treatment_practices = [
@@ -45,6 +55,21 @@ treatment_practices = [
     ("What ancient methods alleviate joint pain?", "Acupuncture, herbal therapies, Ayurvedic massages, and dietary adjustments."),
     ("How can chronic inflammation be managed holistically?", "Anti-inflammatory diets, meditation, herbal supplements, and moderate exercise."),
     ("Describe ancient treatments effective for managing diabetes.", "Dietary management, herbal therapies, physical exercises, and stress reduction practices."),
+    ("How did ancient Egyptians treat wounds?", "They used honey for its antibacterial properties and applied herbs like frankincense and myrrh."),
+    ("What ancient treatments were used for fevers?", "Cooling herbs, mud baths, and fasting were used in various cultures to manage fever symptoms."),
+    ("Describe ancient detoxification therapies.", "Ayurveda used Panchakarma, while TCM employed cupping, acupuncture, and herbal laxatives."),
+    ("How did the Greeks manage emotional disturbances?", "Through philosophical therapy, open-air exercise, and music to balance the humors."),
+    ("What ancient remedies helped with postpartum recovery?", "Nourishing broths, abdominal binding, herbal tonics, and rest were emphasized."),
+    ("How did traditional medicine treat eye strain?", "Herbal eye washes, eye massages, and rest from firelight or sun exposure were prescribed."),
+    ("What ancient practices treated asthma?", "Steaming with medicinal herbs, chest massage, and breathing exercises like pranayama were common."),
+    ("How did ancient Persians manage indigestion?", "They used cumin tea, pomegranate, and warm water infusions with mint or coriander."),
+    ("What remedies were used for sore throats in ancient times?", "Gargling with salt water, honey mixtures, and decoctions of licorice and ginger."),
+    ("How were insect bites treated in traditional healing systems?", "Aloe vera, neem paste, and cooling clays were applied to reduce inflammation and itching."),
+    ("How did ancient traditions approach burnout or overwork?", "Restorative retreats, adaptogenic herbs, and reduced sensory input were prescribed."),
+    ("What treatments did TCM use for menstrual discomfort?", "Mugwort moxibustion, cinnamon bark, and acupressure were commonly used."),
+    ("How did ancient healers treat back pain?", "Through herbal poultices, warm oil massage, spinal stretching, and acupuncture."),
+    ("What traditional treatments exist for dizziness or vertigo?", "Ginger, Ginkgo biloba, acupressure, and grounding rituals were used."),
+    ("How did ancient healers manage insomnia without herbs?", "They relied on ritualized bedtime routines, moonlight exposure, and sound-based calming techniques."),
 ]
 
 
