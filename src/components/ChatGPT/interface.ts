@@ -16,7 +16,7 @@ export interface ChatGPTProps {
   assistantBubbleColor: string;
   userBubbleColor: string;
   userAvatar?: string;
-  chatMode: 'direct' | 'conversational';
+  chatMode: 'conversational';
 
 }
 
@@ -24,6 +24,7 @@ export interface ChatMessage {
   content: string
   role: ChatRole
   timestamp?: string
+  fileId?: string | null;
 }
 
 export interface ChatMessageItemProps {

@@ -38,6 +38,7 @@ import userProfile from './routes/userProfile.js';
 import feedbackRoutes from './routes/feedback.js';
 import ragSearch from './routes/ragSearch.js';
 import ragChat   from './routes/ragChat.js';
+import userFileRouter from './routes/userFile.js';
 
 
 // Importing cookie-parser to handle auth cookies
@@ -86,6 +87,7 @@ app.use('/api', userProfile);
 app.use('/api', feedbackRoutes);
 app.use('/api', ragSearch);
 app.use('/api', ragChat);
+app.use('/api', userFileRouter);
 
 
 

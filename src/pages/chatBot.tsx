@@ -22,7 +22,7 @@ import { ethers } from 'ethers'
 import { getConversations, addConversation, Conversation, UserData } from '../models'
 import { useRouter } from 'next/router'
 import '@/styles/globals.css'
-import ChatModeToggle from './ChatModeToggle';
+//import ChatModeToggle from './ChatModeToggle';
 
 
 
@@ -41,7 +41,8 @@ const Chatbot = () => {
   const [collapsed, setCollapsed] = useState(false)
   const [currentTheme, setCurrentTheme] = useState<'default' | 'dark'>('default')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [chatMode, setChatMode] = useState<'direct' | 'conversational'>('direct');
+  const chatMode = 'conversational';
+
 
 
   // Check login status on initial render
@@ -319,9 +320,9 @@ const Chatbot = () => {
               chatMode={chatMode}
             />
           )}
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '8px' }}>
+          {/*<div style={{ display: 'flex', justifyContent: 'center', marginTop: '8px' }}>
             <ChatModeToggle mode={chatMode} onChange={setChatMode} />
-          </div>
+          </div>*/}
           {/*//// Prev code:
               {selectedChatId && (
                 <ChatGPT
